@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shreya Chavan — Data Analyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --p: #7F77DD;
+      --pl: #AFA9EC;
+      --pd: #534AB7;
+      --pdp: #3C3489;
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --bg3: #16161f;
+      --border: rgba(127,119,221,0.2);
+      --muted: #8884aa;
+      --text: #f0eeff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .site { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,15,0.95);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 960px; margin: 0 auto; padding: 0 24px; height: 56px;
+    }
+    .nav-logo { font-size: 18px; font-weight: 500; color: var(--pl); letter-spacing: 0.02em; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--pl); }
+
+    /* HERO */
+    .hero {
+      min-height: 92vh; display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 60% at 80% 50%, rgba(83,74,183,0.18) 0%, transparent 70%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px),
+                        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px; opacity: 0.38;
+    }
+    .hero-content { position: relative; z-index: 1; padding: 80px 0 60px; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(127,119,221,0.1); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 16px; font-size: 11px;
+      color: var(--pl); margin-bottom: 28px; letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--p); animation: pulse 2s infinite; flex-shrink: 0; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero h1 { font-size: clamp(40px, 7vw, 72px); font-weight: 300; line-height: 1.08; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .hero h1 strong { font-weight: 500; color: var(--pl); }
+
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 500px; line-height: 1.8; margin-bottom: 16px; }
+
+    .hero-open {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(127,119,221,0.08); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 16px; font-size: 12px; color: var(--pl); margin-bottom: 36px;
+    }
+
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--pd); color: #fff; border: none; border-radius: 8px;
+      padding: 12px 28px; font-size: 14px; font-weight: 500; cursor: pointer;
+      text-decoration: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--p); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--pl); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 28px; font-size: 14px; font-weight: 500;
+      cursor: pointer; text-decoration: none; font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--p); background: rgba(127,119,221,0.08); }
+
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 60px; padding-top: 40px;
+      border-top: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .stat-num { font-size: 26px; font-weight: 500; color: var(--pl); font-family: 'DM Mono', monospace; }
+    .stat-label { font-size: 11px; color: var(--muted); margin-top: 3px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* SECTIONS */
+    section { padding: 80px 0; border-top: 1px solid var(--border); }
+    .sec-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--p); margin-bottom: 10px; font-family: 'DM Mono', monospace; }
+    .sec-title { font-size: clamp(28px, 4vw, 40px); font-weight: 300; margin-bottom: 40px; letter-spacing: -0.01em; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .about-text { font-size: 15px; color: var(--muted); line-height: 1.85; }
+    .about-text p { margin-bottom: 16px; }
+    .about-cards { display: grid; gap: 14px; }
+    .acard { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: border-color 0.2s; }
+    .acard:hover { border-color: rgba(127,119,221,0.4); }
+    .acard-ico { font-size: 18px; margin-bottom: 8px; }
+    .acard h4 { font-size: 13px; font-weight: 500; margin-bottom: 4px; color: #d8d4f0; }
+    .acard p { font-size: 12px; color: var(--muted); line-height: 1.65; }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .sgroup { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .sgroup h4 { font-size: 10px; font-weight: 500; color: var(--pl); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px; font-family: 'DM Mono', monospace; }
+    .sitem { margin-bottom: 14px; }
+    .srow { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .sname { font-size: 13px; color: #d8d4f0; }
+    .spct { font-size: 11px; color: var(--muted); font-family: 'DM Mono', monospace; }
+    .sbar { height: 3px; background: rgba(127,119,221,0.12); border-radius: 2px; overflow: hidden; }
+    .sfill { height: 100%; border-radius: 2px; background: var(--p); }
+    .cert-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .cert {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(127,119,221,0.08); border: 1px solid var(--border);
+      border-radius: 20px; padding: 7px 16px; font-size: 12px; color: var(--pl);
+    }
+
+    /* PROJECTS */
+    .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
+    .pcard {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px; transition: border-color 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .pcard:hover { border-color: var(--p); transform: translateY(-3px); }
+    .pcard::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--pdp), var(--pl));
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .pcard:hover::before { opacity: 1; }
+    .ptags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .ptag {
+      font-size: 10px; padding: 3px 10px; border-radius: 10px;
+      background: rgba(127,119,221,0.1); color: var(--pl);
+      border: 1px solid rgba(127,119,221,0.2); font-family: 'DM Mono', monospace;
+    }
+    .ptitle { font-size: 17px; font-weight: 500; margin-bottom: 10px; }
+    .pdesc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .pbullets { margin-top: 14px; list-style: none; }
+    .pbullets li {
+      font-size: 12px; color: var(--muted); line-height: 1.65;
+      padding: 3px 0 3px 16px; position: relative;
+    }
+    .pbullets li::before { content: '·'; position: absolute; left: 0; color: var(--p); font-size: 16px; line-height: 1.3; }
+
+    /* EDUCATION */
+    .edu-list { display: flex; flex-direction: column; gap: 16px; }
+    .eitem {
+      display: grid; grid-template-columns: 100px 1fr; gap: 24px;
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 24px;
+    }
+    .eyear { font-size: 11px; color: var(--p); letter-spacing: 0.04em; padding-top: 2px; line-height: 1.6; font-family: 'DM Mono', monospace; }
+    .etitle { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .eplace { font-size: 12px; color: var(--muted); }
+
+    /* RESUME */
+    .resume-box {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 16px;
+      padding: 40px; display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .resume-box h3 { font-size: 20px; font-weight: 500; margin-bottom: 6px; }
+    .resume-box p { font-size: 13px; color: var(--muted); }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .cinfo { display: flex; flex-direction: column; gap: 20px; }
+    .citem { display: flex; align-items: center; gap: 16px; }
+    .cico {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(127,119,221,0.1); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--pl); flex-shrink: 0; font-weight: 500; font-family: 'DM Mono', monospace;
+    }
+    .clabel { font-size: 10px; color: var(--muted); margin-bottom: 2px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+    .cval { font-size: 13px; color: #d8d4f0; }
+    .fgroup { margin-bottom: 16px; }
+    .fgroup label { display: block; font-size: 10px; color: var(--muted); margin-bottom: 6px; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Mono', monospace; }
+    .fgroup input, .fgroup textarea {
+      width: 100%; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 8px; padding: 11px 14px; font-size: 13px; color: var(--text);
+      outline: none; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s;
+    }
+    .fgroup input:focus, .fgroup textarea:focus { border-color: var(--p); }
+    .fgroup textarea { resize: vertical; min-height: 100px; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; }
+    footer p { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; }
+    footer span { color: var(--pl); }
+
+    @media (max-width: 700px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .eitem { grid-template-columns: 1fr; gap: 6px; }
+      .resume-box { flex-direction: column; }
+      .hero-stats { gap: 22px; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">SC.</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="site hero-content">
+    <div class="hero-tag"><div class="dot"></div> Computer Science graduate &middot; Open to work</div>
+    <h1>Hi, I'm <strong>Shreya</strong><br>Chavan.</h1>
+    <p class="hero-sub">Data Analyst &amp; CS graduate passionate about turning raw data into clear decisions — through Power BI, SQL, Python, and a love for continuous learning.</p>
+    <div class="hero-open">
+      <div class="dot"></div> Actively seeking data analyst roles &middot; Pune, India
+    </div>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#projects">View my work &darr;</a>
+      <a class="btn-outline" href="#contact">Get in touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">2</div><div class="stat-label">Projects built</div></div>
+      <div><div class="stat-num">BSc CS</div><div class="stat-label">2025 graduate</div></div>
+      <div><div class="stat-num">JLPT N4</div><div class="stat-label">Japanese certified</div></div>
+      <div><div class="stat-num">MSc DS</div><div class="stat-label">Currently pursuing</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="site">
+
+  <section id="about">
+    <div class="sec-label">01 &mdash; About me</div>
+    <div class="sec-title">Who I am</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm Shreya Chavan, a Computer Science graduate from Savitribai Phule Pune University (2025), currently pursuing my MSc in Data Science. I'm a fresher actively looking for data analyst opportunities where I can apply my skills and grow.</p>
+        <p>I specialise in Power BI dashboard development, SQL-based data management, and Python-driven analysis. I enjoy building tools that make data intuitive and useful for decision-makers.</p>
+        <p>Beyond data, I'm JLPT N4 certified in Japanese and currently studying N3 — a skill that sets me apart for cross-cultural and multilingual work environments.</p>
+      </div>
+      <div class="about-cards">
+        <div class="acard">
+          <div class="acard-ico">📊</div>
+          <h4>Data analytics &amp; BI</h4>
+          <p>Power BI dashboards with DAX, Power Query, custom KPIs, and interactive visuals.</p>
+        </div>
+        <div class="acard">
+          <div class="acard-ico">🗄️</div>
+          <h4>Database management</h4>
+          <p>MySQL &amp; PostgreSQL — data structuring, querying, cleansing, and validation.</p>
+        </div>
+        <div class="acard">
+          <div class="acard-ico">🌐</div>
+          <h4>Web development</h4>
+          <p>HTML, CSS, Bootstrap, and JavaScript for frontend and full-stack projects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-label">02 &mdash; Skills</div>
+    <div class="sec-title">Tools &amp; technologies</div>
+    <div class="skills-grid">
+      <div class="sgroup">
+        <h4>Analytics &amp; BI</h4>
+        <div class="sitem">
+          <div class="srow"><span class="sname">Power BI (DAX, Power Query)</span><span class="spct">90%</span></div>
+          <div class="sbar"><div class="sfill" style="width:90%"></div></div>
+        </div>
+        <div class="sitem">
+          <div class="srow"><span class="sname">Excel (PivotTables, formulas)</span><span class="spct">92%</span></div>
+          <div class="sbar"><div class="sfill" style="width:92%"></div></div>
+        </div>
+        <div class="sitem">
+          <div class="srow"><span class="sname">Data validation &amp; cleansing</span><span class="spct">88%</span></div>
+          <div class="sbar"><div class="sfill" style="width:88%"></div></div>
+        </div>
+      </div>
+      <div class="sgroup">
+        <h4>Languages &amp; databases</h4>
+        <div class="sitem">
+          <div class="srow"><span class="sname">SQL (MySQL, PostgreSQL)</span><span class="spct">85%</span></div>
+          <div class="sbar"><div class="sfill" style="width:85%"></div></div>
+        </div>
+        <div class="sitem">
+          <div class="srow"><span class="sname">Python</span><span class="spct">78%</span></div>
+          <div class="sbar"><div class="sfill" style="width:78%"></div></div>
+        </div>
+        <div class="sitem">
+          <div class="srow"><span class="sname">Java</span><span class="spct">70%</span></div>
+          <div class="sbar"><div class="sfill" style="width:70%"></div></div>
+        </div>
+      </div>
+      <div class="sgroup">
+        <h4>Web &amp; other</h4>
+        <div class="sitem">
+          <div class="srow"><span class="sname">HTML, CSS, Bootstrap</span><span class="spct">82%</span></div>
+          <div class="sbar"><div class="sfill" style="width:82%"></div></div>
+        </div>
+        <div class="sitem">
+          <div class="srow"><span class="sname">JavaScript</span><span class="spct">68%</span></div>
+          <div class="sbar"><div class="sfill" style="width:68%"></div></div>
+        </div>
+        <div class="sitem">
+          <div class="srow"><span class="sname">Linux / Windows</span><span class="spct">75%</span></div>
+          <div class="sbar"><div class="sfill" style="width:75%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cert-row">
+      <div class="cert">🎌 JLPT N4 Certified (studying N3)</div>
+      <div class="cert">📜 Data Analyst Certificate</div>
+      <div class="cert">🌐 Frontend Web Developer Certificate</div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-label">03 &mdash; Projects</div>
+    <div class="sec-title">What I've built</div>
+    <div class="proj-grid">
+      <div class="pcard">
+        <div class="ptags">
+          <span class="ptag">Power BI</span>
+          <span class="ptag">DAX</span>
+          <span class="ptag">Power Query</span>
+        </div>
+        <div class="ptitle">Interactive Power BI sales dashboard</div>
+        <div class="pdesc">End-to-end BI dashboard built to support reliable business reporting and decision-making.</div>
+        <ul class="pbullets">
+          <li>Cleaned and structured raw data with Power Query for accuracy and integrity</li>
+          <li>Authored DAX formulas for custom KPIs aligned to business needs</li>
+          <li>Designed interactive visuals making insights accessible for all stakeholders</li>
+          <li>Documented data flows for continuous improvement and handover</li>
+        </ul>
+      </div>
+      <div class="pcard">
+        <div class="ptags">
+          <span class="ptag">Java</span>
+          <span class="ptag">MySQL</span>
+          <span class="ptag">HTML/CSS</span>
+          <span class="ptag">Bootstrap</span>
+        </div>
+        <div class="ptitle">Vehicle breakdown assistance system</div>
+        <div class="pdesc">Full-stack application to manage roadside assistance including towing, repairs, and emergency support.</div>
+        <ul class="pbullets">
+          <li>Designed relational database schemas in MySQL for efficient service record retrieval</li>
+          <li>Implemented data validation to maintain data integrity across the system</li>
+          <li>Built responsive frontend with Bootstrap, improving response time and UX</li>
+          <li>Documented process flows and iterated on service delivery improvements</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-label">04 &mdash; Education</div>
+    <div class="sec-title">Academic background</div>
+    <div class="edu-list">
+      <div class="eitem">
+        <div class="eyear">2025–present</div>
+        <div>
+          <div class="etitle">MSc Data Science</div>
+          <div class="eplace">Currently pursuing &middot; Savitribai Phule Pune University</div>
+        </div>
+      </div>
+      <div class="eitem">
+        <div class="eyear">2022–2025</div>
+        <div>
+          <div class="etitle">BSc Computer Science</div>
+          <div class="eplace">Savitribai Phule Pune University, Pune</div>
+        </div>
+      </div>
+      <div class="eitem">
+        <div class="eyear">2021–2022</div>
+        <div>
+          <div class="etitle">Higher Secondary Certificate (HSC)</div>
+          <div class="eplace">MES Abasaheb Garware College, Pune</div>
+        </div>
+      </div>
+      <div class="eitem">
+        <div class="eyear">2019–2020</div>
+        <div>
+          <div class="etitle">Secondary School Certificate (SSC)</div>
+          <div class="eplace">Dnyanganga English Medium School, Pune</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="sec-label">05 &mdash; Resume</div>
+    <div class="sec-title">Download my CV</div>
+    <div class="resume-box">
+      <div>
+        <h3>Shreya Chavan &mdash; Data Analyst</h3>
+        <p>BSc CS graduate &middot; Power BI &middot; SQL &middot; Python &middot; JLPT N4 &middot; Open to work in Pune &amp; beyond</p>
+      </div>
+      <a class="btn-primary" href="SHREYA_CHAVAN_RESUME.pdf" download>Download resume &darr;</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-label">06 &mdash; Contact</div>
+    <div class="sec-title">Let's connect</div>
+    <div class="contact-grid">
+      <div class="cinfo">
+        <div class="citem">
+          <div class="cico">✉</div>
+          <div>
+            <div class="clabel">Email</div>
+            <div class="cval">shreyachavn@gmail.com</div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="cico">📞</div>
+          <div>
+            <div class="clabel">Phone</div>
+            <div class="cval">+91-9373434796</div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="cico">in</div>
+          <div>
+            <div class="clabel">LinkedIn</div>
+            <div class="cval">linkedin.com/in/shreya-chavan15</div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="cico">📍</div>
+          <div>
+            <div class="clabel">Location</div>
+            <div class="cval">Pune, Maharashtra, India</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="fgroup">
+          <label>Your name</label>
+          <input type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="fgroup">
+          <label>Email</label>
+          <input type="email" placeholder="jane@company.com" />
+        </div>
+        <div class="fgroup">
+          <label>Message</label>
+          <textarea placeholder="I'd love to connect about a role..."></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;">Send message &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>Shreya Chavan &middot; <span>Open to opportunities</span> &middot; Pune, India &middot; 2025</p>
+</footer>
+
+</body>
+</html>
